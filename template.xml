@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<template
+    format="2"
+    revision="2"
+    name="MVP Activity"
+    minApi="7"
+    minBuildApi="14"
+    description="Generate MVP structure, classes and interfaces">
+
+    <category value="MVP blog" />
+    <formfactor value="Mobile" />
+
+ <parameter
+        id="folderName"
+        name="Folder Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        default="demo"
+        help="Activity root folder" />
+
+<parameter
+        id="isLauncher"
+        name="Launcher Activity"
+        type="boolean"
+        default="false"/>
+
+    <parameter
+        id="activityClass"
+        name="Activity Name"
+        type="string"
+        constraints="class|unique|nonempty"
+        suggest="${layoutToActivity(folderName)}"
+        default="MainActivity"
+        help="Activity name" />
+
+    <parameter
+        id="layoutName"
+        name="Layout Name"
+        type="string"
+        constraints="layout|unique|nonempty"
+        suggest="${activityToLayout(activityClass)}"
+        default="activity_main"
+        help="Activity layout name" />
+
+    <parameter
+        id="packageName"
+        name="Package name"
+        type="string"
+        constraints="package.${folderName}"
+        default="com.test.test"
+        help="Enter package name" />
+
+    <parameter
+        id="applicationpackage"
+        name="Application package name"
+        type="string"
+        constraints="package"
+        default="com.test.test" />    
+
+    <parameter
+        id="viewClass"
+        name="View Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainView"
+        suggest="${underscoreToCamelCase(activityClass)}View"
+        help="View interface name" />
+
+    <parameter
+        id="presenterClass"
+        name="Presenter Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainPresenter"
+        suggest="${underscoreToCamelCase(activityClass)}Presenter"
+        help="Presenter name" />   
+
+    <parameter
+        id="interactorClass"
+        name="Interactor Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainInteractor"
+        suggest="${underscoreToCamelCase(activityClass)}Interactor"
+        help="Interactor name" />  
+
+    <parameter
+        id="componentClass"
+        name="Component Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainComponent"
+        suggest="${underscoreToCamelCase(activityClass)}Component"
+        help="Component name" />
+
+    <parameter
+        id="moduleClass"
+        name="Module Name"
+        type="string"
+        constraints="class|nonempty|unique"
+        default="MainModule"
+        suggest="${underscoreToCamelCase(activityClass)}Module"
+        help="Module name" />       
+
+    <globals file="globals.xml.ftl" />
+    <execute file="recipe.xml.ftl" />
+
+</template>  
